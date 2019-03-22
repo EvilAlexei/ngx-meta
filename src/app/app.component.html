@@ -1,13 +1,15 @@
 <section id="wrapper">
   <app-header></app-header>
 
-  <section id="main">
-    <app-sidebar></app-sidebar>
+  <mat-sidenav-container id="main">
+    <mat-sidenav opened mode="side" class="sidenav">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
 
-    <section id="content">
+    <mat-sidenav-container>
       <router-outlet></router-outlet>
 
       <app-footer></app-footer>
-    </section>
-  </section>
+    </mat-sidenav-container>
+  </mat-sidenav-container>
 </section>

@@ -1,5 +1,9 @@
 @import "~src/app/styles/variables";
 
+:host {
+  border-bottom: 1px solid $border-color;
+}
+
 #header {
   display: flex;
   flex-flow: row nowrap;
@@ -15,4 +19,47 @@
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
+
+  li {
+    height: 24px;
+    width: 24px;
+  }
+
+  li:first-child {
+    margin-right: 20px;
+  }
+
+  .mat-icon {
+
+  }
+
+  a {
+    display: block;
+    height: 100%;
+    color: $color-grey-02;
+    transition: opacity 250ms ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.logo {
+  display: block;
+  background: url("../../../assets/images/bg-logo.svg") no-repeat;
+  width: 149px;
+  height: 46px;
+  text-indent: -9999px;
+  transition: opacity 250ms ease;
+
+  a {
+    display: block;
+    height: 100%;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
 }
