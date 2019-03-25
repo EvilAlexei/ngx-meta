@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { MatIconModule, MatSidenavModule, MatToolbar } from '@angular/material';
+import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
+import { SectionNavComponent } from './layout/section-nav/section-nav.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MatIconModule, MatSidenavModule, MatToolbar } from '@angular/material';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    MatToolbar
+    MatToolbar,
+    SectionNavComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +26,11 @@ import { MatIconModule, MatSidenavModule, MatToolbar } from '@angular/material';
     AppRoutingModule,
     MatIconModule,
     MatSidenavModule,
-    HttpClientModule,
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

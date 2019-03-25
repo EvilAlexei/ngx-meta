@@ -17,7 +17,29 @@
     overflow-y: auto;
   }
 }
-
-.mat-drawer-container {
+/* mat-sidenav-container */
+.mat-sidenav-container {
   height: 100%;
 }
+/* mat-sidenav-content */
+.mat-sidenav-content {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+/* content */
+#content {
+  flex: 1;
+  flex-flow: row nowrap;
+  display: flex;
+}
+/* content-holder */
+.content-holder {
+  flex: 0 1 100%;
+  padding: 0 30px 50px;
+}
+/* aside-nav */
+.aside-nav {
+  flex: 0 0 180px;
+}
+

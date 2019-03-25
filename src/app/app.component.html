@@ -6,10 +6,19 @@
       <app-sidebar></app-sidebar>
     </mat-sidenav>
 
-    <mat-sidenav-container>
-      <router-outlet></router-outlet>
+    <mat-sidenav-content>
+      <section id="content">
+        <div class="content-holder">
+          <router-outlet></router-outlet>
+        </div>
+
+        <aside class="aside-nav">
+          <app-section-nav></app-section-nav>
+        </aside>
+      </section>
 
       <app-footer></app-footer>
-    </mat-sidenav-container>
+    </mat-sidenav-content>
+
   </mat-sidenav-container>
 </section>
