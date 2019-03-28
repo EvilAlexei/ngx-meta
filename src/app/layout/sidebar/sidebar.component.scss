@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+:host {
+  display: block;
+  padding-bottom: 30px;
+}
+.mat-list-base {
+
+  .mat-list-item {
+    height: auto;
+
+    /deep/ .mat-list-item-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      padding: 0 16px;
+      line-height: 48px;
+      box-sizing: border-box;
+
+      &.active {
+        color: $color-black;
+        background-color: $color-grey;
+      }
+    }
+  }
+}

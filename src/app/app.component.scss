@@ -35,11 +35,9 @@
 }
 /* content-holder */
 .content-holder {
-  flex: 0 1 100%;
+  margin-right: $aside-nav-width;
   padding: 0 30px 50px;
-}
-/* aside-nav */
-.aside-nav {
-  flex: 0 0 180px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 

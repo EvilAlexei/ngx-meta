@@ -1,5 +1,10 @@
 @import "../../styles/variables";
-
+:host {
+  width: $aside-nav-width;
+  position: fixed;
+  right: 20px; // scrollbar
+  top: $header-height + 1px;;
+}
 .section-nav {
   margin: 15px 0 0;
   padding: 0;

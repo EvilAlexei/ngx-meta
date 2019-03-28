@@ -396,4 +396,4 @@ private registerRulesForFields(object: any, className: string): void {
 This way we automatically pre-register additional rules for  an `Object` such as data type for class field.
 
 
-[1]: https://github.com/ngx-meta/rules/blob/master/docs/OSSRules.md
+[1]: ./oss-rules
