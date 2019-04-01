@@ -30,12 +30,7 @@ import { markedOptionsFactory } from './marked-options-factory';
     MatSidenavModule,
     MatListModule,
     HttpClientModule,
-    MarkdownModule.forRoot({
-      markedOptions: {
-        provide: MarkedOptions,
-        useFactory: markedOptionsFactory,
-      },
-    })
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

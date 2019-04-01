@@ -1,23 +1,39 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import * as marked from 'marked';
+
+declare var Prism: {
+  highlightAll: (async: boolean) => void;
+  highlightAllUnder: (element: Element) => void;
+};
 
 @Component({
   selector: 'app-oss-rules',
-  template: `<markdown class="variable-binding" [data]="content"></markdown>`,
+  template: `<ng-content></ng-content>`
 })
-export class OssRulesComponent implements OnChanges {
-  content: string = require('!!raw-loader!./oss-rules.doc.md');
+export class OssRulesComponent implements OnInit {
+  mdFile: string = require('!!raw-loader!./oss-rules.doc.md');
+  content: string;
 
-  constructor() { }
+  constructor(
+    private domSanitizer: DomSanitizer,
+    public element: ElementRef<HTMLElement>,
+  ) {}
 
-  ngOnChanges(): void {
-    setTimeout(() => {
-      const a = document.getElementById('oss-rules-and-metaui-application');
+  ngOnInit(): void {
+    const renderer = new marked.Renderer();
 
-      console.log(42, a);
-    }, 1000);
+    renderer.link = (href: string, title: string, text: string) => {
+      return (`<a routerLink="." [fragment]=\"${ href }\" pageScroll target="_blank" title=\"${title}\">${text}</a>`);
+    };
 
-    const b = document.getElementById('oss-rules-and-metaui-application');
+    marked.setOptions({
+      renderer,
+      gfm: true,
+    });
 
-    console.log(43, b);
+    this.content = this.domSanitizer.sanitize(SecurityContext.HTML, marked(this.mdFile));
+    this.element.nativeElement.innerHTML = this.content;
+    Prism.highlightAllUnder(this.element.nativeElement);
   }
 }
