@@ -386,7 +386,7 @@ var HeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"section-nav\">\n  <li *ngFor=\"let link of links\">\n    <a href=\"#\"> {{ link }} </a>\n  </li>\n</ul>\n"
+module.exports = "<ul class=\"section-nav\">\n  <li *ngFor=\"let link of links\">\n    <a href=\"#{{ link.id }}\"> {{ link.textContent }} </a>\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -413,26 +413,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SectionNavComponent", function() { return SectionNavComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _servides_headers_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../servides/headers-list.service */ "./src/app/servides/headers-list.service.ts");
+
 
 
 var SectionNavComponent = /** @class */ (function () {
-    function SectionNavComponent() {
-        this.links = [
-            'item-01',
-            'item-02',
-            'item-03',
-            'item-04',
-            'item-05',
-            'item-06',
-        ];
+    function SectionNavComponent(headersListService) {
+        this.headersListService = headersListService;
     }
+    SectionNavComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.headersListService.headersList
+            .subscribe(function (data) {
+            _this.links = data;
+        });
+    };
     SectionNavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-section-nav',
             template: __webpack_require__(/*! ./section-nav.component.html */ "./src/app/layout/section-nav/section-nav.component.html"),
             styles: [__webpack_require__(/*! ./section-nav.component.scss */ "./src/app/layout/section-nav/section-nav.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_servides_headers_list_service__WEBPACK_IMPORTED_MODULE_2__["HeadersListService"]])
     ], SectionNavComponent);
     return SectionNavComponent;
 }());
@@ -497,6 +499,43 @@ var SidebarComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], SidebarComponent);
     return SidebarComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servides/headers-list.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/servides/headers-list.service.ts ***!
+  \**************************************************/
+/*! exports provided: HeadersListService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeadersListService", function() { return HeadersListService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+var HeadersListService = /** @class */ (function () {
+    function HeadersListService() {
+        this.headersList = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+    }
+    HeadersListService.prototype.getHeaders = function (element) {
+        var str = element.querySelectorAll('h3[id], h4[id]');
+        this.headersList.next(str);
+    };
+    HeadersListService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], HeadersListService);
+    return HeadersListService;
 }());
 
 

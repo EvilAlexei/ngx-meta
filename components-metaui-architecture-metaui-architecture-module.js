@@ -63,18 +63,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MetauiArchitectureComponent", function() { return MetauiArchitectureComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _servides_headers_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../servides/headers-list.service */ "./src/app/servides/headers-list.service.ts");
+
 
 
 var MetauiArchitectureComponent = /** @class */ (function () {
-    function MetauiArchitectureComponent() {
+    function MetauiArchitectureComponent(headersListService, element) {
+        this.headersListService = headersListService;
+        this.element = element;
         this.content = __webpack_require__(/*! !raw-loader!./metaui-architecture.doc.md */ "./node_modules/raw-loader/index.js!./src/app/components/+metaui-architecture/metaui-architecture.doc.md");
     }
+    MetauiArchitectureComponent.prototype.ngAfterViewChecked = function () {
+        this.headersListService.getHeaders(this.element.nativeElement);
+    };
     MetauiArchitectureComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-metaui-architecture',
-            template: "<markdown class=\"variable-binding\" [data]=\"content\"></markdown>",
+            template: "<markdown [data]=\"content\"></markdown>",
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_servides_headers_list_service__WEBPACK_IMPORTED_MODULE_2__["HeadersListService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
     ], MetauiArchitectureComponent);
     return MetauiArchitectureComponent;
 }());
