@@ -84,7 +84,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"wrapper\">\n  <app-header></app-header>\n\n  <mat-sidenav-container id=\"main\">\n    <mat-sidenav opened mode=\"side\" class=\"sidenav\">\n      <app-sidebar></app-sidebar>\n    </mat-sidenav>\n    <mat-sidenav-content>\n      <section id=\"content\">\n        <div class=\"content-holder\">\n          <router-outlet></router-outlet>\n        </div>\n\n        <aside class=\"aside-nav\">\n          <app-section-nav></app-section-nav>\n        </aside>\n      </section>\n\n      <app-footer></app-footer>\n    </mat-sidenav-content>\n\n  </mat-sidenav-container>\n</section>\n"
+module.exports = "<section id=\"wrapper\">\n  <app-header></app-header>\n\n  <mat-sidenav-container id=\"main\">\n    <mat-sidenav opened mode=\"side\" class=\"sidenav\">\n      <app-sidebar></app-sidebar>\n    </mat-sidenav>\n\n    <mat-sidenav-content>\n      <section id=\"content\">\n        <div class=\"content-holder\">\n          <router-outlet></router-outlet>\n\n        </div>\n\n        <aside class=\"aside-nav\">\n          <app-section-nav></app-section-nav>\n        </aside>\n      </section>\n\n      <app-footer></app-footer>\n    </mat-sidenav-content>\n\n  </mat-sidenav-container>\n</section>\n"
 
 /***/ }),
 
@@ -177,8 +177,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _layout_section_nav_section_nav_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layout/section-nav/section-nav.component */ "./src/app/layout/section-nav/section-nav.component.ts");
 /* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-/* harmony import */ var _marked_options_factory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./marked-options-factory */ "./src/app/marked-options-factory.ts");
-
 
 
 
@@ -202,8 +200,8 @@ var AppModule = /** @class */ (function () {
                 _layout_header_header_component__WEBPACK_IMPORTED_MODULE_7__["HeaderComponent"],
                 _layout_footer_footer_component__WEBPACK_IMPORTED_MODULE_8__["FooterComponent"],
                 _layout_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_9__["SidebarComponent"],
+                _layout_section_nav_section_nav_component__WEBPACK_IMPORTED_MODULE_11__["SectionNavComponent"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatToolbar"],
-                _layout_section_nav_section_nav_component__WEBPACK_IMPORTED_MODULE_11__["SectionNavComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
@@ -213,12 +211,7 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatListModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                ngx_markdown__WEBPACK_IMPORTED_MODULE_12__["MarkdownModule"].forRoot({
-                    markedOptions: {
-                        provide: ngx_markdown__WEBPACK_IMPORTED_MODULE_12__["MarkedOptions"],
-                        useFactory: _marked_options_factory__WEBPACK_IMPORTED_MODULE_13__["markedOptionsFactory"],
-                    },
-                })
+                ngx_markdown__WEBPACK_IMPORTED_MODULE_12__["MarkdownModule"].forRoot()
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
@@ -506,37 +499,6 @@ var SidebarComponent = /** @class */ (function () {
     return SidebarComponent;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/app/marked-options-factory.ts":
-/*!*******************************************!*\
-  !*** ./src/app/marked-options-factory.ts ***!
-  \*******************************************/
-/*! exports provided: markedOptionsFactory */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "markedOptionsFactory", function() { return markedOptionsFactory; });
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-
-function markedOptionsFactory() {
-    var renderer = new ngx_markdown__WEBPACK_IMPORTED_MODULE_0__["MarkedRenderer"]();
-    renderer.link = function (href, title, text) {
-        // if (title) {
-        //   return `<a href="${ href }" title="${ title || '' }">${ text }</a>`;
-        // }
-        if (href.startsWith('#')) {
-            return "<a pageScroll href=\"" + href + "\">" + text + "</a>";
-        }
-        return "<a href=\"" + href + "\">" + text + "</a>";
-    };
-    return {
-        renderer: renderer
-    };
-}
 
 
 /***/ }),

@@ -68,12 +68,11 @@ __webpack_require__.r(__webpack_exports__);
 var MetauiArchitectureComponent = /** @class */ (function () {
     function MetauiArchitectureComponent() {
         this.content = __webpack_require__(/*! !raw-loader!./metaui-architecture.doc.md */ "./node_modules/raw-loader/index.js!./src/app/components/+metaui-architecture/metaui-architecture.doc.md");
-        this.test = '<p>123123</p>';
     }
     MetauiArchitectureComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-metaui-architecture',
-            template: "\n    \n    <markdown class=\"variable-binding\" [data]=\"content\"></markdown>\n  ",
+            template: "<markdown class=\"variable-binding\" [data]=\"content\"></markdown>",
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], MetauiArchitectureComponent);
