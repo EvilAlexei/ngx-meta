@@ -361,7 +361,7 @@ var HeaderComponent = /** @class */ (function () {
         this.matIconRegistry = matIconRegistry;
         this.domSanitizer = domSanitizer;
         this.matIconRegistry
-            .addSvgIcon('ngx-meta-github', this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/ico-github.svg')).addSvgIcon('ngx-meta-twitter', this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/ico-twitter.svg'));
+            .addSvgIcon('ngx-meta-github', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-github.svg')).addSvgIcon('ngx-meta-twitter', this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-twitter.svg'));
     }
     HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
