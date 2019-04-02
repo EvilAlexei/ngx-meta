@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HeadersListService } from '../../servides/headers-list.service';
 
 @Component({
   selector: 'app-section-nav',
   templateUrl: './section-nav.component.html',
   styleUrls: ['./section-nav.component.scss']
 })
-export class SectionNavComponent {
-  links: string[];
+export class SectionNavComponent implements OnInit, OnDestroy {
+  links: [];
 
-  constructor() {
-    this.links = [
-      'item-01',
-      'item-02',
-      'item-03',
-      'item-04',
-      'item-05',
-      'item-06',
-    ];
+  constructor(
+    private headersListService: HeadersListService,
+  ) {}
+
+  ngOnInit(): void {
+    this.headersListService.headersList
+      .subscribe((data) => {
+        this.links = data;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.headersListService.headersList.unsubscribe();
   }
 }

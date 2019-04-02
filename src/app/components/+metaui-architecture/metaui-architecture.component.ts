@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef } from '@angular/core';
+import { HeadersListService } from '../../servides/headers-list.service';
 
 @Component({
   selector: 'app-metaui-architecture',
-  template: `<markdown class="variable-binding" [data]="content"></markdown>`,
+  template: `<markdown [data]="content"></markdown>`,
 })
-export class MetauiArchitectureComponent {
+export class MetauiArchitectureComponent implements AfterViewChecked {
   content: string = require('!!raw-loader!./metaui-architecture.doc.md');
 
-  constructor() { }
+  constructor(
+    private headersListService: HeadersListService,
+    public element: ElementRef<HTMLElement>,
+  ) { }
+
+  ngAfterViewChecked(): void {
+    this.headersListService.getHeaders(this.element.nativeElement);
+  }
 }
