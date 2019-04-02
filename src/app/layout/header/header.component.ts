@@ -16,10 +16,10 @@ export class HeaderComponent {
     this.matIconRegistry
       .addSvgIcon(
         'ngx-meta-github',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/ico-github.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-github.svg')
       ).addSvgIcon(
       'ngx-meta-twitter',
-        this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/ico-twitter.svg')
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-twitter.svg')
       );
   }
 }

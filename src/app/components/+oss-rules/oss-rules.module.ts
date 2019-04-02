@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { OssRulesRoutingModule } from './oss-rules-routing.module';
 import { OssRulesComponent } from './oss-rules.component';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
     CommonModule,
     OssRulesRoutingModule,
     HttpClientModule,
-    NgxPageScrollModule,
     MarkdownModule.forChild()
   ],
 })
