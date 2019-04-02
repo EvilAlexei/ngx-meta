@@ -10,8 +10,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
 import { SectionNavComponent } from './layout/section-nav/section-nav.component';
-import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
-import { markedOptionsFactory } from './marked-options-factory';
+import { MarkdownModule } from './layout/markdown/markdown.module';
 
 @NgModule({
   declarations: [
@@ -20,17 +19,17 @@ import { markedOptionsFactory } from './marked-options-factory';
     FooterComponent,
     SidebarComponent,
     MatToolbar,
-    SectionNavComponent
+    SectionNavComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    HttpClientModule,
-    MarkdownModule.forRoot()
+    MarkdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

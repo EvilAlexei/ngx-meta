@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 import { OssRulesRoutingModule } from './oss-rules-routing.module';
 import { OssRulesComponent } from './oss-rules.component';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule } from '../../layout/markdown/markdown.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { MarkdownModule } from 'ngx-markdown';
   imports: [
     CommonModule,
     OssRulesRoutingModule,
-    HttpClientModule,
-    MarkdownModule.forChild()
+    MarkdownModule
   ],
 })
 export class OssRulesModule { }
