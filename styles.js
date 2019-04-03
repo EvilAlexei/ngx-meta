@@ -29,7 +29,7 @@ module.exports = [[module.i, "/**\n * okaidia theme for JavaScript, CSS and HTML
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "html,\nbody {\n  height: 100%; }\n\nbody {\n  margin: 0;\n  font-family: Roboto, \"Helvetica Neue\", sans-serif; }\n\napp-markdown img {\n  max-width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3ZzL1Byb2plY3RzL25neC1tZXRhLWRvY3Mvc3JjL3N0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztFQUVFLFlBQVksRUFBQTs7QUFFZDtFQUNFLFNBQVM7RUFDVCxpREFBaUQsRUFBQTs7QUFHbkQ7RUFFSSxlQUFlLEVBQUEiLCJmaWxlIjoic3JjL3N0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCxcbmJvZHkge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5ib2R5IHtcbiAgbWFyZ2luOiAwO1xuICBmb250LWZhbWlseTogUm9ib3RvLCBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWY7XG59XG5cbmFwcC1tYXJrZG93biB7XG4gIGltZyB7XG4gICAgbWF4LXdpZHRoOiAxMDAlO1xuICB9XG59XG4iXX0= */", '', '']]
+module.exports = [[module.i, "html,\nbody {\n  height: 100%; }\n\nbody {\n  margin: 0;\n  font-family: Roboto, \"Helvetica Neue\", sans-serif; }\n\napp-markdown img {\n  max-width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2FsZXgvUHJvamVjdHMvbmd4LW1ldGEvc3JjL3N0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztFQUVFLFlBQVksRUFBQTs7QUFFZDtFQUNFLFNBQVM7RUFDVCxpREFBaUQsRUFBQTs7QUFHbkQ7RUFFSSxlQUFlLEVBQUEiLCJmaWxlIjoic3JjL3N0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCxcbmJvZHkge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5ib2R5IHtcbiAgbWFyZ2luOiAwO1xuICBmb250LWZhbWlseTogUm9ib3RvLCBcIkhlbHZldGljYSBOZXVlXCIsIHNhbnMtc2VyaWY7XG59XG5cbmFwcC1tYXJrZG93biB7XG4gIGltZyB7XG4gICAgbWF4LXdpZHRoOiAxMDAlO1xuICB9XG59XG4iXX0= */", '', '']]
 
 /***/ }),
 
@@ -639,9 +639,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vs/Projects/ngx-meta-docs/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css */"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
-__webpack_require__(/*! /home/vs/Projects/ngx-meta-docs/node_modules/prismjs/themes/prism-okaidia.css */"./node_modules/prismjs/themes/prism-okaidia.css");
-module.exports = __webpack_require__(/*! /home/vs/Projects/ngx-meta-docs/src/styles.scss */"./src/styles.scss");
+__webpack_require__(/*! /home/alex/Projects/ngx-meta/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css */"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
+__webpack_require__(/*! /home/alex/Projects/ngx-meta/node_modules/prismjs/themes/prism-okaidia.css */"./node_modules/prismjs/themes/prism-okaidia.css");
+module.exports = __webpack_require__(/*! /home/alex/Projects/ngx-meta/src/styles.scss */"./src/styles.scss");
 
 
 /***/ })
