@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HeadersListService } from './headers-list.service';
+import { HeadingsListService } from './headings-list.service';
 
-describe('HeadersListService', () => {
+describe('HeadingsListService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: HeadersListService = TestBed.get(HeadersListService);
+    const service: HeadingsListService = TestBed.get(HeadingsListService);
     expect(service).toBeTruthy();
   });
 });
