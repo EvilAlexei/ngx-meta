@@ -10,7 +10,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
 import { AsideNavComponent } from './layout/aside-nav/aside-nav.component';
-import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { MarkdownModule } from 'ngx-markdown';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    HttpClientModule,
-    MarkdownModule.forRoot()
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

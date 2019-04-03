@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MetauiArchitectureRoutingModule } from './metaui-architecture-routing.module';
 import { MetauiArchitectureComponent } from './metaui-architecture.component';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule } from '../../layout/markdown/markdown.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +13,7 @@ import { MarkdownModule } from 'ngx-markdown';
   imports: [
     CommonModule,
     MetauiArchitectureRoutingModule,
-    HttpClientModule,
-    MarkdownModule.forChild()
+    MarkdownModule
   ],
 })
 export class MetauiArchitectureModule { }

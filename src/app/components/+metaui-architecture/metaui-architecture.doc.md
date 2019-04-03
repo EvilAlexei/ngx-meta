@@ -1,4 +1,4 @@
-# MetaUI Architecture
+## MetaUI Architecture
 
 This document describes `MetaUI framework` fundamentals and also shows you the implementation aspects in the 
 Typescript (Javascript) environment, what are the limitations and workarounds that we need to follow. 
