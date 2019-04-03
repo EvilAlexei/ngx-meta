@@ -332,7 +332,8 @@ var AsideNavComponent = /** @class */ (function () {
         this.router = router;
         this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["NavigationEnd"]; }))
             .subscribe(function () {
-            _this.activeRoute = _this.router.url.split('#')[0];
+            _this.activeRoute = _this.router.url.split('#')[0].replace('/', '');
+            ;
             _this.activeFragment = _this.router.url.split('#')[1];
         });
     }
@@ -536,6 +537,7 @@ var SidebarComponent = /** @class */ (function () {
         this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["NavigationEnd"]; }))
             .subscribe(function () {
             _this.activeRoute = _this.router.url.split('#')[0].replace('/', '');
+            _this.activeFragment = _this.router.url.split('#')[1];
         });
         this.menuList = _app_routing__WEBPACK_IMPORTED_MODULE_4__["routes"].filter(function (route) {
             return route.path; // exclude empty route

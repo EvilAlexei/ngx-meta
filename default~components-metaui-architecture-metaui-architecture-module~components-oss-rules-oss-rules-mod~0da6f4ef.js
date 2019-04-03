@@ -1735,9 +1735,6 @@ var MarkdownComponent = /** @class */ (function () {
             renderer: markedRenderer
         });
     }
-    MarkdownComponent.prototype.test = function (event) {
-        event.stopPropagation();
-    };
     MarkdownComponent.prototype.ngOnInit = function () {
         this.render();
     };
@@ -1753,7 +1750,7 @@ var MarkdownComponent = /** @class */ (function () {
     MarkdownComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-markdown',
-            template: '<ng-content (click)="test($event)"></ng-content>',
+            template: '<ng-content></ng-content>',
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
             _servises_headings_list_service__WEBPACK_IMPORTED_MODULE_3__["HeadingsListService"],
