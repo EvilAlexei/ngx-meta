@@ -14,6 +14,7 @@ export class SidebarComponent implements OnInit {
   navItems: HTMLElement[];
   menuList: Routes;
   activeRoute: string;
+  activeFragment: string;
 
   constructor(
     private router: Router,
@@ -24,6 +25,7 @@ export class SidebarComponent implements OnInit {
       )
       .subscribe(() => {
         this.activeRoute = this.router.url.split('#')[0].replace('/', '');
+        this.activeFragment = this.router.url.split('#')[1];
       });
 
     this.menuList = routes.filter((route) => {

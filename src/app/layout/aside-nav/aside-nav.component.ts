@@ -22,7 +22,7 @@ export class AsideNavComponent implements OnInit {
         filter((event) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
-        this.activeRoute = this.router.url.split('#')[0];
+        this.activeRoute = this.router.url.split('#')[0].replace('/', '');
         this.activeFragment = this.router.url.split('#')[1];
       });
   }

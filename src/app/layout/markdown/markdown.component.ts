@@ -10,7 +10,7 @@ declare var Prism: {
 
 @Component({
   selector: 'app-markdown',
-  template: '<ng-content (click)="test($event)"></ng-content>',
+  template: '<ng-content></ng-content>',
 })
 export class MarkdownComponent implements OnInit {
   @Input() mdFile: string;
@@ -34,10 +34,6 @@ export class MarkdownComponent implements OnInit {
     marked.setOptions({
       renderer: markedRenderer
     });
-  }
-
-  test(event) {
-    event.stopPropagation();
   }
 
   ngOnInit(): void {
