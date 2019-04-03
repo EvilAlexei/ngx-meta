@@ -63,7 +63,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"components-metaui-architecture-metaui-architecture-module":"components-metaui-architecture-metaui-architecture-module","components-oss-rules-oss-rules-module":"components-oss-rules-oss-rules-module","components-oss-syntax-oss-syntax-module":"components-oss-syntax-oss-syntax-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"default~components-metaui-architecture-metaui-architecture-module~components-oss-rules-oss-rules-mod~0da6f4ef":"default~components-metaui-architecture-metaui-architecture-module~components-oss-rules-oss-rules-mod~0da6f4ef","components-metaui-architecture-metaui-architecture-module":"components-metaui-architecture-metaui-architecture-module","components-oss-rules-oss-rules-module":"components-oss-rules-oss-rules-module","components-oss-syntax-oss-syntax-module":"components-oss-syntax-oss-syntax-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

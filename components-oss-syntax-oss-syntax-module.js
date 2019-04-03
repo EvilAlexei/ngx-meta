@@ -63,26 +63,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OssSyntaxComponent", function() { return OssSyntaxComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _servises_headings_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../servises/headings-list.service */ "./src/app/servises/headings-list.service.ts");
-
 
 
 var OssSyntaxComponent = /** @class */ (function () {
-    function OssSyntaxComponent(headingsListService, element) {
-        this.headingsListService = headingsListService;
-        this.element = element;
-        this.content = __webpack_require__(/*! !raw-loader!./oss-syntax.doc.md */ "./node_modules/raw-loader/index.js!./src/app/components/+oss-syntax/oss-syntax.doc.md");
+    function OssSyntaxComponent() {
+        this.mdFile = __webpack_require__(/*! !raw-loader!./oss-syntax.doc.md */ "./node_modules/raw-loader/index.js!./src/app/components/+oss-syntax/oss-syntax.doc.md");
     }
-    OssSyntaxComponent.prototype.ngAfterViewChecked = function () {
-        this.headingsListService.getHeaders(this.element.nativeElement);
-    };
     OssSyntaxComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-oss-syntax',
-            template: "<markdown [data]=\"content\"></markdown>",
+            template: "<app-markdown [mdFile]=\"mdFile\"></app-markdown>",
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_servises_headings_list_service__WEBPACK_IMPORTED_MODULE_2__["HeadingsListService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], OssSyntaxComponent);
     return OssSyntaxComponent;
 }());
@@ -104,11 +96,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _oss_syntax_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./oss-syntax-routing.module */ "./src/app/components/+oss-syntax/oss-syntax-routing.module.ts");
-/* harmony import */ var _oss_syntax_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./oss-syntax.component */ "./src/app/components/+oss-syntax/oss-syntax.component.ts");
-/* harmony import */ var ngx_markdown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-markdown */ "./node_modules/ngx-markdown/fesm5/ngx-markdown.js");
-
+/* harmony import */ var _oss_syntax_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./oss-syntax-routing.module */ "./src/app/components/+oss-syntax/oss-syntax-routing.module.ts");
+/* harmony import */ var _oss_syntax_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./oss-syntax.component */ "./src/app/components/+oss-syntax/oss-syntax.component.ts");
+/* harmony import */ var _layout_markdown_markdown_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../layout/markdown/markdown.module */ "./src/app/layout/markdown/markdown.module.ts");
 
 
 
@@ -121,13 +111,12 @@ var OssSyntaxModule = /** @class */ (function () {
     OssSyntaxModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _oss_syntax_component__WEBPACK_IMPORTED_MODULE_5__["OssSyntaxComponent"]
+                _oss_syntax_component__WEBPACK_IMPORTED_MODULE_4__["OssSyntaxComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                _oss_syntax_routing_module__WEBPACK_IMPORTED_MODULE_4__["OssSyntaxRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                ngx_markdown__WEBPACK_IMPORTED_MODULE_6__["MarkdownModule"].forChild()
+                _oss_syntax_routing_module__WEBPACK_IMPORTED_MODULE_3__["OssSyntaxRoutingModule"],
+                _layout_markdown_markdown_module__WEBPACK_IMPORTED_MODULE_5__["MarkdownModule"]
             ],
         })
     ], OssSyntaxModule);
