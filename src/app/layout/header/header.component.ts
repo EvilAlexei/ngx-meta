@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @Output() navBtnClick: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -20,6 +21,13 @@ export class HeaderComponent {
       ).addSvgIcon(
       'ngx-meta-twitter',
         this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-twitter.svg')
+      ).addSvgIcon(
+      'ngx-meta-hamburger',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/images/ico-hamburger.svg')
       );
+  }
+
+  navToggle(): void {
+    this.navBtnClick.emit(null);
   }
 }

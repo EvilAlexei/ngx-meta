@@ -1,8 +1,12 @@
 <section id="wrapper">
-  <app-header></app-header>
+  <app-header (navBtnClick)="navMenuToggle()"></app-header>
 
   <mat-sidenav-container id="main">
-    <mat-sidenav opened mode="side" class="sidenav">
+    <mat-sidenav
+      [opened]="navMenuState"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      disableClose
+      class="sidenav">
       <app-sidebar></app-sidebar>
     </mat-sidenav>
 
@@ -10,11 +14,10 @@
       <section id="content">
         <div class="content-holder">
           <router-outlet></router-outlet>
-
         </div>
 
-        <aside class="aside-nav">
-          <app-section-nav></app-section-nav>
+        <aside [hidden]="mobileQuery.matches" class="aside-nav">
+          <app-aside-nav></app-aside-nav>
         </aside>
       </section>
 

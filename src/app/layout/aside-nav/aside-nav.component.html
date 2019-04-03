@@ -1,0 +1,10 @@
+<ul class="aside-nav">
+  <li *ngFor="let item of navItems">
+    <a
+      [href]="activeRoute + '#' + item.id"
+      [class.active]="item.id === activeFragment"
+    >
+      {{ item.textContent }}
+    </a>
+  </li>
+</ul>

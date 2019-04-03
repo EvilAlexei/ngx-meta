@@ -1,8 +1,15 @@
 <mat-nav-list>
   <mat-list-item><a routerLink="/oss-rules" routerLinkActive="active">OSS Rules</a></mat-list-item>
+  <!--<ul class="sub-nav">-->
+    <!--<li *ngFor="let item of navItems">-->
+      <!--<a-->
+        <!--[href]="activeRoute + '#' + item.id"-->
+        <!--[class.active]="item.id === activeFragment"-->
+      <!--&gt;-->
+        <!--{{ item.textContent }}-->
+      <!--</a>-->
+    <!--</li>-->
+  <!--</ul>-->
   <mat-list-item><a routerLink="/oss-syntax" routerLinkActive="active">OSS Syntax</a></mat-list-item>
   <mat-list-item><a routerLink="/metaui-architecture" routerLinkActive="active">MetaUI Architecture</a></mat-list-item>
-  <!--<mat-list-item *ngFor="let link of links">-->
-    <!--<a href="#"> {{ link }} </a>-->
-  <!--</mat-list-item>-->
 </mat-nav-list>

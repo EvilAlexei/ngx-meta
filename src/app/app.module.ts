@@ -9,7 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
-import { SectionNavComponent } from './layout/section-nav/section-nav.component';
+import { AsideNavComponent } from './layout/aside-nav/aside-nav.component';
 import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { MarkdownModule } from 'ngx-markdown';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    SectionNavComponent,
+    AsideNavComponent,
     MatToolbar,
   ],
   imports: [
