@@ -49,5 +49,9 @@
       color: $color-blue;
       background-color: $color-grey-04;
     }
+
+    &.active {
+      color: $color-blue;
+    }
   }
 }

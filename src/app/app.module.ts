@@ -10,6 +10,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
 import { AsideNavComponent } from './layout/aside-nav/aside-nav.component';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AsideNavComponent } from './layout/aside-nav/aside-nav.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPageScrollCoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

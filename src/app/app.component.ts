@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class AppComponent implements OnInit, OnDestroy {
   tabletQuery: MediaQueryList;
   mobileQuery: MediaQueryList;
-  navMenuState = true;
+
+  @ViewChild('sidenav') private sidenav: MatSidenav;
 
   readonly tabletQueryListener: () => void;
   readonly mobileQueryListener: () => void;
@@ -21,8 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher,
   ) {
     this.tabletQuery = media.matchMedia('(max-width: 1000px)');
     this.mobileQuery = media.matchMedia('(max-width: 780px)');
@@ -30,37 +32,31 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.tabletQuery.addListener(this.tabletQueryListener);
     this.mobileQuery.addListener(this.mobileQueryListener);
-
-    this.navMenuState = !this.tabletQuery.matches;
-    this.tabletQuery.onchange = () => {
-      this.navMenuState = !this.tabletQuery.matches;
-    };
   }
 
   ngOnInit(): void {
     this.router.events.pipe(
-        filter((event) => event instanceof NavigationEnd),
+        filter((event: RouterEvent) => event instanceof NavigationEnd),
         map(() => this.activatedRoute),
-        map((route) => {
+        map((route: ActivatedRoute) => {
           while (route.firstChild) {
             route = route.firstChild;
           }
           return route;
         }),
-        filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data),
+        filter((route: ActivatedRoute) => route.outlet === 'primary'),
+        mergeMap((route: ActivatedRoute) => route.data),
       )
-      .subscribe((event) => {
+      .subscribe((event: {title: string}) => {
         this.titleService.setTitle(event.title);
+        if (this.tabletQuery.matches) {
+          this.sidenav.close();
+        }
       });
   }
 
   ngOnDestroy(): void {
     this.tabletQuery.removeListener(this.tabletQueryListener);
     this.mobileQuery.removeListener(this.mobileQueryListener);
-  }
-
-  navMenuToggle(): void {
-    this.navMenuState = !this.navMenuState;
   }
 }
