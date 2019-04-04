@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HeadingsListService } from '../../servises/headings-list.service';
+import { HeadingsListService } from '../../services/headings-list.service';
+import { NavigationEnd, Route, Router, RouterEvent, Routes } from '@angular/router';
+
+import { routes } from '../../app.routing';
+import { filter } from 'rxjs/operators';
+import { AnchorScrollService } from '../../services/anchor-scroll.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +13,39 @@ import { HeadingsListService } from '../../servises/headings-list.service';
 })
 export class SidebarComponent implements OnInit {
   navItems: HTMLElement[];
+  menuList: Routes;
+  activeRoute: string;
+  activeFragment: string;
 
-  constructor(private headingsListService: HeadingsListService) {}
+  constructor(
+    private router: Router,
+    private headingsListService: HeadingsListService,
+    private anchorScrollService: AnchorScrollService
+  ) {
+    this.router.events.pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd)
+      )
+      .subscribe(() => {
+        this.activeRoute = this.router.url.split('#')[0].replace('/', '');
+        this.activeFragment = this.router.url.split('#')[1];
+      });
+
+    this.menuList = routes.filter((route: Route) => {
+      return route.path; // exclude empty route
+    });
+  }
 
   ngOnInit(): void {
     this.headingsListService.navList
-      .subscribe((data) => {
+      .subscribe((data: HTMLElement[]) => {
         this.navItems = data;
       });
+  }
+
+  anchorScroll(event: MouseEvent): void {
+    event.preventDefault();
+
+    const anchorTarget = (event.currentTarget as HTMLAnchorElement).hash;
+    this.anchorScrollService.scrollToTarget(anchorTarget);
   }
 }

@@ -1,19 +1,12 @@
-import { AfterViewChecked, Component, ElementRef } from '@angular/core';
-import { HeadingsListService } from '../../servises/headings-list.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-oss-rules',
-  template: `<markdown [data]="content"></markdown>`,
+  template: `<app-markdown [mdFile]="mdFile"></app-markdown>`
 })
-export class OssRulesComponent implements AfterViewChecked {
-  content: string = require('!!raw-loader!./oss-rules.doc.md');
+export class OssRulesComponent {
+  mdFile: string = require('!!raw-loader!./oss-rules.doc.md');
 
-  constructor(
-    private headingsListService: HeadingsListService,
-    public element: ElementRef<HTMLElement>,
-  ) {}
-
-  ngAfterViewChecked(): void {
-    this.headingsListService.getHeaders(this.element.nativeElement);
+  constructor() {
   }
 }

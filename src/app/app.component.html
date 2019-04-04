@@ -1,16 +1,16 @@
 <section id="wrapper">
-  <app-header (navBtnClick)="navMenuToggle()"></app-header>
+  <app-header (navBtnClick)="sidenav.toggle()"></app-header>
 
   <mat-sidenav-container id="main">
     <mat-sidenav
-      [opened]="navMenuState"
+      [opened]="!mobileQuery.matches"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
-      disableClose
+      #sidenav
       class="sidenav">
       <app-sidebar></app-sidebar>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content id="mat-content">
       <section id="content">
         <div class="content-holder">
           <router-outlet></router-outlet>
