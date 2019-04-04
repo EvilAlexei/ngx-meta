@@ -87,7 +87,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"wrapper\">\n  <app-header (navBtnClick)=\"navMenuToggle()\"></app-header>\n\n  <mat-sidenav-container id=\"main\">\n    <mat-sidenav\n      [opened]=\"navMenuState\"\n      [mode]=\"mobileQuery.matches ? 'over' : 'side'\"\n      disableClose\n      class=\"sidenav\">\n      <app-sidebar></app-sidebar>\n    </mat-sidenav>\n\n    <mat-sidenav-content id=\"mat-content\">\n      <section id=\"content\">\n        <div class=\"content-holder\">\n          <router-outlet></router-outlet>\n        </div>\n\n        <aside [hidden]=\"mobileQuery.matches\" class=\"aside-nav\">\n          <app-aside-nav></app-aside-nav>\n        </aside>\n      </section>\n\n      <app-footer></app-footer>\n    </mat-sidenav-content>\n\n  </mat-sidenav-container>\n</section>\n"
+module.exports = "<section id=\"wrapper\">\n  <app-header (navBtnClick)=\"sidenav.toggle()\"></app-header>\n\n  <mat-sidenav-container id=\"main\">\n    <mat-sidenav\n      [opened]=\"!mobileQuery.matches\"\n      [mode]=\"mobileQuery.matches ? 'over' : 'side'\"\n      #sidenav\n      class=\"sidenav\">\n      <app-sidebar></app-sidebar>\n    </mat-sidenav>\n\n    <mat-sidenav-content id=\"mat-content\">\n      <section id=\"content\">\n        <div class=\"content-holder\">\n          <router-outlet></router-outlet>\n        </div>\n\n        <aside [hidden]=\"mobileQuery.matches\" class=\"aside-nav\">\n          <app-aside-nav></app-aside-nav>\n        </aside>\n      </section>\n\n      <app-footer></app-footer>\n    </mat-sidenav-content>\n\n  </mat-sidenav-container>\n</section>\n"
 
 /***/ }),
 
@@ -118,6 +118,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
 
 
 
@@ -126,21 +128,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function () {
     function AppComponent(router, activatedRoute, titleService, changeDetectorRef, media) {
-        var _this = this;
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.titleService = titleService;
-        this.navMenuState = true;
+        this.changeDetectorRef = changeDetectorRef;
+        this.media = media;
         this.tabletQuery = media.matchMedia('(max-width: 1000px)');
         this.mobileQuery = media.matchMedia('(max-width: 780px)');
         this.tabletQueryListener = function () { return changeDetectorRef.detectChanges(); };
         this.mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
         this.tabletQuery.addListener(this.tabletQueryListener);
         this.mobileQuery.addListener(this.mobileQueryListener);
-        this.navMenuState = !this.tabletQuery.matches;
-        this.tabletQuery.onchange = function () {
-            _this.navMenuState = !_this.tabletQuery.matches;
-        };
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -152,15 +150,19 @@ var AppComponent = /** @class */ (function () {
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (route) { return route.outlet === 'primary'; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (route) { return route.data; }))
             .subscribe(function (event) {
             _this.titleService.setTitle(event.title);
+            if (_this.tabletQuery.matches) {
+                _this.sidenav.close();
+            }
         });
     };
     AppComponent.prototype.ngOnDestroy = function () {
         this.tabletQuery.removeListener(this.tabletQueryListener);
         this.mobileQuery.removeListener(this.mobileQueryListener);
     };
-    AppComponent.prototype.navMenuToggle = function () {
-        this.navMenuState = !this.navMenuState;
-    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('sidenav'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSidenav"])
+    ], AppComponent.prototype, "sidenav", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
@@ -599,18 +601,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var ngx_page_scroll_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-page-scroll-core */ "./node_modules/ngx-page-scroll-core/fesm5/ngx-page-scroll-core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 var AnchorScrollService = /** @class */ (function () {
-    function AnchorScrollService(pageScrollService, document) {
+    function AnchorScrollService(pageScrollService, router, document) {
         this.pageScrollService = pageScrollService;
+        this.router = router;
         this.document = document;
     }
-    AnchorScrollService.prototype.scrollToTarget = function (targetHash) {
+    AnchorScrollService.prototype.scrollToTarget = function (targetHash, changeHash) {
         var parentView = this.document.getElementById('mat-content');
-        location.hash = targetHash;
         this.pageScrollService.scroll({
             document: this.document,
             scrollTarget: targetHash,
@@ -620,13 +624,15 @@ var AnchorScrollService = /** @class */ (function () {
             scrollOffset: 20,
             duration: 250
         });
+        location.hash = !changeHash ? targetHash : location.hash;
     };
     AnchorScrollService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_page_scroll_core__WEBPACK_IMPORTED_MODULE_3__["PageScrollService"], Object])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_page_scroll_core__WEBPACK_IMPORTED_MODULE_3__["PageScrollService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], Object])
     ], AnchorScrollService);
     return AnchorScrollService;
 }());

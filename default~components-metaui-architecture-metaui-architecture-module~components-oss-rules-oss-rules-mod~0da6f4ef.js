@@ -1729,15 +1729,6 @@ var MarkdownComponent = /** @class */ (function () {
         this.headingsListService = headingsListService;
         this.router = router;
         this.anchorScrollService = anchorScrollService;
-        this.activeRoute = this.router.url.split('#')[0].replace('/', '');
-        this.activeFragment = this.router.url.split('#')[1];
-        this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"]; }))
-            .subscribe(function () {
-            if (_this.activeFragment) {
-                var anchorTarget = '#' + _this.activeFragment;
-                _this.anchorScrollService.scrollToTarget(anchorTarget);
-            }
-        });
         var markedRenderer = new marked__WEBPACK_IMPORTED_MODULE_2__["Renderer"]();
         markedRenderer.link = function (href, title, text) {
             if (href.startsWith('#')) {
@@ -1748,9 +1739,24 @@ var MarkdownComponent = /** @class */ (function () {
         marked__WEBPACK_IMPORTED_MODULE_2__["setOptions"]({
             renderer: markedRenderer
         });
+        this.router.events
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"]; }))
+            .subscribe(function (event) {
+            _this.activeRoute = event.url.split('#')[0].replace('/', '');
+            _this.activeFragment = event.url.split('#')[1];
+            var targetEl = _this.element.nativeElement.querySelector('#' + _this.activeFragment);
+            if (_this.activeFragment && targetEl) {
+                var anchorTarget = '#' + _this.activeFragment;
+                _this.anchorScrollService.scrollToTarget(anchorTarget, false);
+            }
+        });
     }
     MarkdownComponent.prototype.ngOnInit = function () {
         this.render();
+        if (this.activeFragment) {
+            var anchorTarget = '#' + this.activeFragment;
+            this.anchorScrollService.scrollToTarget(anchorTarget);
+        }
     };
     MarkdownComponent.prototype.render = function () {
         this.element.nativeElement.innerHTML = marked__WEBPACK_IMPORTED_MODULE_2__["parse"](this.mdFile);
