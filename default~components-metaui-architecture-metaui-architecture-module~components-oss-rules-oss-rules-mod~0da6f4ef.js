@@ -1711,23 +1711,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! marked */ "./node_modules/marked/lib/marked.js");
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(marked__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _servises_headings_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../servises/headings-list.service */ "./src/app/servises/headings-list.service.ts");
+/* harmony import */ var _services_headings_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/headings-list.service */ "./src/app/services/headings-list.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_anchor_scroll_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/anchor-scroll.service */ "./src/app/services/anchor-scroll.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
 
 
 
 
 
 var MarkdownComponent = /** @class */ (function () {
-    function MarkdownComponent(element, headingsListService, router) {
+    function MarkdownComponent(element, headingsListService, router, anchorScrollService) {
+        var _this = this;
         this.element = element;
         this.headingsListService = headingsListService;
         this.router = router;
-        var activeRoute = this.router.url.split('#')[0].replace('/', '');
+        this.anchorScrollService = anchorScrollService;
+        this.activeRoute = this.router.url.split('#')[0].replace('/', '');
+        this.activeFragment = this.router.url.split('#')[1];
+        this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"]; }))
+            .subscribe(function () {
+            if (_this.activeFragment) {
+                var anchorTarget = '#' + _this.activeFragment;
+                _this.anchorScrollService.scrollToTarget(anchorTarget);
+            }
+        });
         var markedRenderer = new marked__WEBPACK_IMPORTED_MODULE_2__["Renderer"]();
         markedRenderer.link = function (href, title, text) {
             if (href.startsWith('#')) {
-                href = activeRoute + href;
+                href = _this.activeRoute + href;
             }
             return ("<a href=\"" + href + "\" title=\"" + title + "\">" + text + "</a>");
         };
@@ -1753,8 +1767,9 @@ var MarkdownComponent = /** @class */ (function () {
             template: '<ng-content></ng-content>',
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"],
-            _servises_headings_list_service__WEBPACK_IMPORTED_MODULE_3__["HeadingsListService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+            _services_headings_list_service__WEBPACK_IMPORTED_MODULE_3__["HeadingsListService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _services_anchor_scroll_service__WEBPACK_IMPORTED_MODULE_5__["AnchorScrollService"]])
     ], MarkdownComponent);
     return MarkdownComponent;
 }());
