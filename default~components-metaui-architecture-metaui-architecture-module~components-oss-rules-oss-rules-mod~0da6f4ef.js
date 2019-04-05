@@ -1747,7 +1747,7 @@ var MarkdownComponent = /** @class */ (function () {
             var targetEl = _this.element.nativeElement.querySelector('#' + _this.activeFragment);
             if (_this.activeFragment && targetEl) {
                 var anchorTarget = '#' + _this.activeFragment;
-                _this.anchorScrollService.scrollToTarget(anchorTarget, false);
+                _this.anchorScrollService.scrollToTarget(anchorTarget);
             }
         });
     }
