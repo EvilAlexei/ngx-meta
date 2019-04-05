@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private headingsListService: HeadingsListService,
-    private anchorScrollService: AnchorScrollService
+    private anchorScrollService: AnchorScrollService,
   ) {
     this.router.events.pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd)

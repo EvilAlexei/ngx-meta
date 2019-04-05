@@ -50,7 +50,7 @@ export class MarkdownComponent implements OnInit {
         const targetEl = this.element.nativeElement.querySelector('#' + this.activeFragment);
         if (this.activeFragment && targetEl) {
           const anchorTarget = '#' + this.activeFragment;
-          this.anchorScrollService.scrollToTarget(anchorTarget, false);
+          this.anchorScrollService.scrollToTarget(anchorTarget);
         }
       });
   }

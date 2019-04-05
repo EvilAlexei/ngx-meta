@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT, Location } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,8 @@ export class AnchorScrollService {
   scrollToTarget(targetHash: string, changeHash?: boolean): void {
     const parentView = this.document.getElementById('mat-content');
 
+    location.hash = !changeHash ? targetHash : location.hash;
+
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: targetHash,
@@ -26,7 +28,10 @@ export class AnchorScrollService {
       scrollOffset: 20,
       duration: 250
     });
+  }
 
-    location.hash = !changeHash ? targetHash : location.hash;
+  scrollTop(): void {
+    const parentView = this.document.getElementById('mat-content');
+    parentView.scrollTo(0, 0);
   }
 }

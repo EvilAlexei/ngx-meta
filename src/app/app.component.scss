@@ -22,19 +22,12 @@
 .mat-sidenav-container {
   height: 100%;
 }
-/* mat-sidenav-content */
-.mat-sidenav-content {
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-}
 /* aside-nav */
 .aside-nav {
   flex: 0 0 $aside-nav-width;
 }
 /* content */
 #content {
-  flex: 1;
   flex-flow: row nowrap;
   display: flex;
 }
