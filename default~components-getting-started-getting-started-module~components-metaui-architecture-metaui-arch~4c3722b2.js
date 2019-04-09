@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~components-metaui-architecture-metaui-architecture-module~components-oss-rules-oss-rules-mod~0da6f4ef"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~components-getting-started-getting-started-module~components-metaui-architecture-metaui-arch~4c3722b2"],{
 
 /***/ "./node_modules/marked/lib/marked.js":
 /*!*******************************************!*\
@@ -1734,7 +1734,7 @@ var MarkdownComponent = /** @class */ (function () {
             if (href.startsWith('#')) {
                 href = _this.activeRoute + href;
             }
-            return ("<a href=\"" + href + "\" title=\"" + title + "\">" + text + "</a>");
+            return ("<a href=\"" + href + "\" title=\"" + (title ? title : '') + "\">" + text + "</a>");
         };
         marked__WEBPACK_IMPORTED_MODULE_2__["setOptions"]({
             renderer: markedRenderer
@@ -1747,7 +1747,7 @@ var MarkdownComponent = /** @class */ (function () {
             var targetEl = _this.element.nativeElement.querySelector('#' + _this.activeFragment);
             if (_this.activeFragment && targetEl) {
                 var anchorTarget = '#' + _this.activeFragment;
-                _this.anchorScrollService.scrollToTarget(anchorTarget);
+                _this.anchorScrollService.scrollToTarget(anchorTarget, false);
             }
         });
     }
@@ -1762,6 +1762,16 @@ var MarkdownComponent = /** @class */ (function () {
         this.element.nativeElement.innerHTML = marked__WEBPACK_IMPORTED_MODULE_2__["parse"](this.mdFile);
         Prism.highlightAllUnder(this.element.nativeElement);
         this.headingsListService.getHeaders(this.element.nativeElement);
+        this.addDefaultCodeStyling();
+    };
+    MarkdownComponent.prototype.addDefaultCodeStyling = function () {
+        var codeElements = this.element.nativeElement.querySelectorAll('pre');
+        codeElements.forEach(function (item) {
+            var classCheck = item.classList.value.indexOf('language-') > 0;
+            if (!item.classList.length && !classCheck) {
+                item.classList.add('language-default');
+            }
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -1826,4 +1836,4 @@ var MarkdownModule = /** @class */ (function () {
 /***/ })
 
 }]);
-//# sourceMappingURL=default~components-metaui-architecture-metaui-architecture-module~components-oss-rules-oss-rules-mod~0da6f4ef.js.map
+//# sourceMappingURL=default~components-getting-started-getting-started-module~components-metaui-architecture-metaui-arch~4c3722b2.js.map
