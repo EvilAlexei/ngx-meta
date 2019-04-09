@@ -1,4 +1,4 @@
-## OSS Rules and MetaUI Application
+# OSS Rules and MetaUI Application
 
 In this section we will extend our application from the [getting started guide][1] where a simple 
 page was generated and also cover more advanced aspect behind but before we get into how to use OSS, 
@@ -1123,4 +1123,4 @@ to give it a chance and try it out and also look at the following:
 [3]: https://github.com/ngx-meta/rules/blob/master/libs/rules/src/lib/metaui/core/meta-context/meta-context.component.ts
 [4]: https://github.com/ngx-meta/rules/blob/master/libs/rules/src/lib/metaui/layout/meta-include.directive.ts
 [5]: https://github.com/ngx-meta/rules/blob/master/libs/rules/src/lib/metaui/core/meta.ts
-[6]: https://github.com/ngx-meta/rules/blob/master/docs/oss-syntax.md
+[6]: /oss-syntax

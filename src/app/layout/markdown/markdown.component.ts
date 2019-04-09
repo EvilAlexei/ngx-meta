@@ -32,7 +32,8 @@ export class MarkdownComponent implements OnInit {
         href = this.activeRoute + href;
       }
 
-      return (`<a href=\"${href}\" title=\"${title}\">${text}</a>`);
+
+      return (`<a href=\"${href}\" title=\"${title ? title : ''}\">${text}</a>`);
     };
 
     marked.setOptions({
@@ -43,7 +44,7 @@ export class MarkdownComponent implements OnInit {
       .pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd)
       )
-      .subscribe((event) => {
+      .subscribe((event: RouterEvent) => {
         this.activeRoute = event.url.split('#')[0].replace('/', '');
         this.activeFragment = event.url.split('#')[1];
 
@@ -68,5 +69,17 @@ export class MarkdownComponent implements OnInit {
     this.element.nativeElement.innerHTML = marked.parse(this.mdFile);
     Prism.highlightAllUnder(this.element.nativeElement);
     this.headingsListService.getHeaders(this.element.nativeElement);
+    this.addDefaultCodeStyling();
+  }
+
+  addDefaultCodeStyling(): void {
+    const codeElements = this.element.nativeElement.querySelectorAll('pre');
+    codeElements.forEach((item: HTMLElement) => {
+      const classCheck = item.classList.value.indexOf('language-') > 0;
+
+      if (!item.classList.length && !classCheck) {
+        item.classList.add('language-default');
+      }
+    });
   }
 }
