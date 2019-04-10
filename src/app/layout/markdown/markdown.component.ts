@@ -25,20 +25,7 @@ export class MarkdownComponent implements OnInit {
     private router: Router,
     private anchorScrollService: AnchorScrollService
   ) {
-    const markedRenderer = new marked.Renderer();
-
-    markedRenderer.link = (href, title, text) => {
-      if (href.startsWith('#')) {
-        href = this.activeRoute + href;
-      }
-
-
-      return (`<a href=\"${href}\" title=\"${title ? title : ''}\">${text}</a>`);
-    };
-
-    marked.setOptions({
-      renderer: markedRenderer
-    });
+    this.activeRoute = this.router.url.replace('/', '');
 
     this.router.events
       .pipe(
@@ -48,15 +35,15 @@ export class MarkdownComponent implements OnInit {
         this.activeRoute = event.url.split('#')[0].replace('/', '');
         this.activeFragment = event.url.split('#')[1];
 
-        const targetEl = this.element.nativeElement.querySelector('#' + this.activeFragment);
-        if (this.activeFragment && targetEl) {
+        if (this.activeFragment) {
           const anchorTarget = '#' + this.activeFragment;
-          this.anchorScrollService.scrollToTarget(anchorTarget, false);
+          this.anchorScrollService.scrollToTarget(anchorTarget);
         }
       });
   }
 
   ngOnInit(): void {
+    this.setUpMarkedRenderer();
     this.render();
 
     if (this.activeFragment) {
@@ -66,9 +53,13 @@ export class MarkdownComponent implements OnInit {
   }
 
   render(): void {
+    /* parse markdown and replace innerHTML of component */
     this.element.nativeElement.innerHTML = marked.parse(this.mdFile);
+    /* highlight syntax by PrismJS */
     Prism.highlightAllUnder(this.element.nativeElement);
+    /* get list of main headings for nav menu */
     this.headingsListService.getHeaders(this.element.nativeElement);
+    /* add default styling classes for 'pre' tags without specified language */
     this.addDefaultCodeStyling();
   }
 
@@ -80,6 +71,29 @@ export class MarkdownComponent implements OnInit {
       if (!item.classList.length && !classCheck) {
         item.classList.add('language-default');
       }
+    });
+  }
+
+  setUpMarkedRenderer(): void {
+    const markedRenderer = new marked.Renderer();
+
+    /* set up link template for parser */
+    markedRenderer.link = (href: string, title: string, text: string) => {
+      title = title || ''; // because if title empty it receives null
+
+      if (href.startsWith('#')) {
+        href = '#/' + this.activeRoute + href; // prepare href for routing
+      }
+
+      if (href.startsWith('/')) {
+        href = '#' + href; // prepare href for routing
+      }
+
+      return (`<a href=\"${href}\" title=\"${title}\">${text}</a>`);
+    };
+
+    marked.setOptions({
+      renderer: markedRenderer
     });
   }
 }

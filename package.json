@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gh-pages": "gh-pages -d dist",
-    "deploy": "npm run build && npm run gh-pages"
+    "deploy": "ng build --prod --base-href '.' && npm run gh-pages"
   },
   "husky": {
     "hooks": {

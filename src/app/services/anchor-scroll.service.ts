@@ -14,7 +14,7 @@ export class AnchorScrollService {
     @Inject(DOCUMENT) private document: any
   ) { }
 
-  scrollToTarget(targetHash: string, changeHash?: boolean): void {
+  scrollToTarget(targetHash: string): void {
     const parentView = this.document.getElementById('mat-content');
 
     this.pageScrollService.scroll({
@@ -26,7 +26,5 @@ export class AnchorScrollService {
       scrollOffset: 20,
       duration: 250
     });
-
-    location.hash = !changeHash ? targetHash : location.hash;
   }
 }

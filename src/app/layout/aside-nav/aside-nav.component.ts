@@ -12,17 +12,18 @@ import { AnchorScrollService } from '../../services/anchor-scroll.service';
 })
 export class AsideNavComponent implements OnInit {
   navItems: HTMLElement[];
+  activeRoute: string;
   activeFragment: string;
 
   constructor(
     private headingsListService: HeadingsListService,
     private router: Router,
-    private anchorScrollService: AnchorScrollService
   ) {
     this.router.events.pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
+        this.activeRoute = this.router.url.split('#')[0].replace('/', '');
         this.activeFragment = this.router.url.split('#')[1];
       });
   }
@@ -32,12 +33,5 @@ export class AsideNavComponent implements OnInit {
       .subscribe((data: HTMLElement[]) => {
         this.navItems = data;
       });
-  }
-
-  anchorScroll(event: MouseEvent): void {
-    event.preventDefault();
-
-    const anchorTarget = (event.currentTarget as HTMLAnchorElement).hash;
-    this.anchorScrollService.scrollToTarget(anchorTarget);
   }
 }
