@@ -74,7 +74,9 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_3__["routes"])],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_3__["routes"], {
+                    anchorScrolling: 'enabled'
+                })],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
         })
     ], AppRoutingModule);
@@ -305,7 +307,7 @@ var routes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"aside-nav\">\n  <li *ngFor=\"let item of navItems\">\n    <a\n      [href]=\"'#' + item.id\"\n      [class.active]=\"item.id === activeFragment\"\n      (click)=\"anchorScroll($event)\"\n    >\n      {{ item.textContent }}\n    </a>\n  </li>\n</ul>\n"
+module.exports = "<ul class=\"aside-nav\">\n  <li *ngFor=\"let item of navItems\">\n    <a\n      [routerLink]=\"activeRoute\"\n      [fragment]=\"item.id\"\n      [class.active]=\"item.id === activeFragment\"\n    >\n      {{ item.textContent }}\n    </a>\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -350,6 +352,7 @@ var AsideNavComponent = /** @class */ (function () {
         this.anchorScrollService = anchorScrollService;
         this.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["NavigationEnd"]; }))
             .subscribe(function () {
+            _this.activeRoute = _this.router.url.split('#')[0].replace('/', '');
             _this.activeFragment = _this.router.url.split('#')[1];
         });
     }
@@ -514,7 +517,7 @@ var HeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-nav-list>\n  <ng-container *ngFor=\"let item of menuList\">\n    <mat-list-item>\n      <a [routerLink]=\"item.path\" routerLinkActive=\"active\">{{ item.data.title }}</a>\n    </mat-list-item>\n    <ul class=\"sub-nav\" *ngIf=\"activeRoute === item.path\">\n      <li *ngFor=\"let item of navItems\">\n        <a\n          [href]=\"'#' + item.id\"\n          [class.active]=\"item.id === activeFragment\"\n          (click)=\"anchorScroll($event)\"\n        >\n          {{ item.textContent }}\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</mat-nav-list>\n"
+module.exports = "<mat-nav-list>\n  <ng-container *ngFor=\"let item of menuList\">\n    <mat-list-item>\n      <a [routerLink]=\"item.path\" routerLinkActive=\"active\">{{ item.data.title }}</a>\n    </mat-list-item>\n    <ul class=\"sub-nav\" *ngIf=\"activeRoute === item.path\">\n      <li *ngFor=\"let item of navItems\">\n        <a\n          [routerLink]=\"activeRoute\"\n          [fragment]=\"item.id\"\n          [class.active]=\"item.id === activeFragment\"\n        >\n          {{ item.textContent }}\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</mat-nav-list>\n"
 
 /***/ }),
 
@@ -625,16 +628,23 @@ var AnchorScrollService = /** @class */ (function () {
     }
     AnchorScrollService.prototype.scrollToTarget = function (targetHash, changeHash) {
         var parentView = this.document.getElementById('mat-content');
-        this.pageScrollService.scroll({
-            document: this.document,
-            scrollTarget: targetHash,
-            scrollViews: [
-                parentView
-            ],
-            scrollOffset: 20,
-            duration: 250
-        });
-        location.hash = !changeHash ? targetHash : location.hash;
+        // this.pageScrollService.scroll({
+        //   document: this.document,
+        //   scrollTarget: targetHash,
+        //   scrollViews: [
+        //     parentView
+        //   ],
+        //   scrollOffset: 20,
+        //   duration: 250
+        // });
+        //
+        // const element = document.querySelector(targetHash);
+        //
+        // if (element) {
+        //   console.log(42);
+        //   // element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        //   location.hash = !changeHash ? targetHash : location.hash;
+        // }
     };
     AnchorScrollService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

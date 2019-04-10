@@ -1729,34 +1729,32 @@ var MarkdownComponent = /** @class */ (function () {
         this.headingsListService = headingsListService;
         this.router = router;
         this.anchorScrollService = anchorScrollService;
-        var markedRenderer = new marked__WEBPACK_IMPORTED_MODULE_2__["Renderer"]();
-        markedRenderer.link = function (href, title, text) {
-            if (href.startsWith('#')) {
-                href = _this.activeRoute + href;
-            }
-            return ("<a href=\"" + href + "\" title=\"" + (title ? title : '') + "\">" + text + "</a>");
-        };
-        marked__WEBPACK_IMPORTED_MODULE_2__["setOptions"]({
-            renderer: markedRenderer
-        });
         this.router.events
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (event) { return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_4__["NavigationEnd"]; }))
             .subscribe(function (event) {
             _this.activeRoute = event.url.split('#')[0].replace('/', '');
             _this.activeFragment = event.url.split('#')[1];
-            var targetEl = _this.element.nativeElement.querySelector('#' + _this.activeFragment);
-            if (_this.activeFragment && targetEl) {
-                var anchorTarget = '#' + _this.activeFragment;
-                _this.anchorScrollService.scrollToTarget(anchorTarget, false);
-            }
+            // const targetEl = this.element.nativeElement.querySelector('#' + this.activeFragment);
+            // if (this.activeFragment && targetEl) {
+            //   const anchorTarget = '#' + this.activeFragment;
+            //   this.anchorScrollService.scrollToTarget(anchorTarget, false);
+            // }
         });
     }
     MarkdownComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var markedRenderer = new marked__WEBPACK_IMPORTED_MODULE_2__["Renderer"]();
+        markedRenderer.link = function (href, title, text) {
+            title = title || ''; // because if title empty it receives null
+            if (href.startsWith('#')) {
+                href = _this.activeRoute + href;
+            }
+            return ("<a href=\"" + href + "\" title=\"" + title + "\">" + text + "</a>");
+        };
+        marked__WEBPACK_IMPORTED_MODULE_2__["setOptions"]({
+            renderer: markedRenderer
+        });
         this.render();
-        if (this.activeFragment) {
-            var anchorTarget = '#' + this.activeFragment;
-            this.anchorScrollService.scrollToTarget(anchorTarget);
-        }
     };
     MarkdownComponent.prototype.render = function () {
         this.element.nativeElement.innerHTML = marked__WEBPACK_IMPORTED_MODULE_2__["parse"](this.mdFile);
