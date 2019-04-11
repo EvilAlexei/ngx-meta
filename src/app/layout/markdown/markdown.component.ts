@@ -78,10 +78,10 @@ export class MarkdownComponent implements OnInit, AfterViewChecked {
       title = title || ''; // because if title empty it receives null
 
       /*
-       * prepare href for routing with useHash true
-       * cases that this regular expression covers:
-       * '/', './', '../', '#', '#/'
-       **/
+         prepare href for routing with useHash true
+         cases that this regular expression covers:
+         '/', './', '../', '#', '#/'
+      */
       href = href.replace(/^(\/|\.\/|\.\.\/|#\/?)(.*)/, (...args) => {
         return (args[1] === '#') ?
           '#/' + this.activeRoute + args[0] : // case when route starts with '#'
