@@ -1,7 +1,10 @@
 @import "~src/app/styles/variables";
 
 :host {
-  border-bottom: 1px solid $border-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 #header {
@@ -83,4 +86,6 @@
 .mat-toolbar-row,
 .mat-toolbar-single-row {
   height: $header-height;
+  border-bottom: 1px solid $border-color;
+  box-sizing: border-box;
 }

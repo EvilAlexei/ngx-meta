@@ -35,6 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    /* Dynamic title change and close nav  */
     this.router.events.pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd),
         map(() => this.activatedRoute),
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe((event: {title: string}) => {
         this.titleService.setTitle(event.title);
+
         if (this.tabletQuery.matches) {
           this.sidenav.close();
         }

@@ -2,8 +2,8 @@
 :host {
   width: $aside-nav-width;
   position: fixed;
-  right: 20px; // scrollbar
-  top: $header-height + 1px;;
+  top: $header-height;
+  background: $color-grey-05;
 }
 .aside-nav {
   margin: 15px 0 0;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, OnInit } from '@angular/core';
 import * as marked from 'marked';
 import { HeadingsListService } from '../../services/headings-list.service';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
@@ -14,7 +14,7 @@ declare var Prism: {
   selector: 'app-markdown',
   template: '<ng-content></ng-content>',
 })
-export class MarkdownComponent implements OnInit {
+export class MarkdownComponent implements OnInit, AfterViewChecked {
   @Input() mdFile: string;
   activeRoute: string;
   activeFragment: string;
@@ -25,8 +25,6 @@ export class MarkdownComponent implements OnInit {
     private router: Router,
     private anchorScrollService: AnchorScrollService
   ) {
-    this.activeRoute = this.router.url.replace('/', '');
-
     this.router.events
       .pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd)
@@ -36,8 +34,7 @@ export class MarkdownComponent implements OnInit {
         this.activeFragment = event.url.split('#')[1];
 
         if (this.activeFragment) {
-          const anchorTarget = '#' + this.activeFragment;
-          this.anchorScrollService.scrollToTarget(anchorTarget);
+          this.anchorScrollService.scrollToTarget(this.activeFragment);
         }
       });
   }
@@ -45,11 +42,10 @@ export class MarkdownComponent implements OnInit {
   ngOnInit(): void {
     this.setUpMarkedRenderer();
     this.render();
+  }
 
-    if (this.activeFragment) {
-      const anchorTarget = '#' + this.activeFragment;
-      this.anchorScrollService.scrollToTarget(anchorTarget);
-    }
+  ngAfterViewChecked(): void {
+    this.anchorScrollService.scrollToTarget(this.activeFragment);
   }
 
   render(): void {
@@ -81,13 +77,16 @@ export class MarkdownComponent implements OnInit {
     markedRenderer.link = (href: string, title: string, text: string) => {
       title = title || ''; // because if title empty it receives null
 
-      if (href.startsWith('#')) {
-        href = '#/' + this.activeRoute + href; // prepare href for routing
-      }
-
-      if (href.startsWith('/')) {
-        href = '#' + href; // prepare href for routing
-      }
+      /*
+       * prepare href for routing with useHash true
+       * cases that this regular expression covers:
+       * '/', './', '../', '#', '#/'
+       **/
+      href = href.replace(/^(\/|\.\/|\.\.\/|#\/?)(.*)/, (...args) => {
+        return (args[1] === '#') ?
+          '#/' + this.activeRoute + args[0] : // case when route starts with '#'
+          '#/' + args[2]; // other cases
+      });
 
       return (`<a href=\"${href}\" title=\"${title}\">${text}</a>`);
     };

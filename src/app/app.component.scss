@@ -2,9 +2,10 @@
 
 #wrapper {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - #{$header-height});
   flex-flow: column nowrap;
   min-width: 320px;
+  padding-top: $header-height;
 }
 #main {
   flex: 1;
@@ -13,7 +14,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    top: $header-height + 1px;
+    top: $header-height;
     width: $sidenav-width;
     overflow-y: auto;
   }
@@ -21,12 +22,6 @@
 /* mat-sidenav-container */
 .mat-sidenav-container {
   height: 100%;
-}
-/* mat-sidenav-content */
-.mat-sidenav-content {
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
 }
 /* aside-nav */
 .aside-nav {
@@ -44,4 +39,14 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+/* tablet styles */
+.tablet {
+  app-aside-nav {
+    bottom: 0;
+    overflow: auto;
+  }
 
+  app-footer {
+    margin-right: $aside-nav-width;
+  }
+}

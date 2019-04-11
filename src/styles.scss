@@ -9,6 +9,7 @@ body {
   font-size: 16px;
   color: $color-black;
   font-family: 'Source Sans Pro', sans-serif;
+  background: $color-grey-05;
 }
 
 app-markdown {
@@ -82,17 +83,4 @@ a {
 
 p {
   line-height: 1.6;
-}
-
-@font-face {
-  font-family: 'Googlesans';
-  src: url('https://uploads-ssl.webflow.com/5c7fcabb4e3feec5add934f2/5c7fcf0a76e5a33706ad7579_GoogleSans-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Googlesans';
-  src: url('https://uploads-ssl.webflow.com/5c7fcabb4e3feec5add934f2/5c7fcf0a76e5a327a6ad757a_GoogleSans-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
 }
