@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OssRulesRoutingModule } from './oss-rules-routing.module';
-import { OssRulesComponent } from './oss-rules.component';
+import { GettingStartedRoutingModule } from './getting-started-routing.module';
+import { GettingStartedComponent } from './getting-started.component';
 import { MarkdownModule } from '../../layout/markdown/markdown.module';
 
 @NgModule({
   declarations: [
-    OssRulesComponent
+    GettingStartedComponent
   ],
   imports: [
     CommonModule,
-    OssRulesRoutingModule,
+    GettingStartedRoutingModule,
     MarkdownModule
   ],
 })
-export class OssRulesModule { }
+export class GettingStartedModule { }

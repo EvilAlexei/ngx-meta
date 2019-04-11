@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'getting-started',
+    loadChildren: './components/+getting-started/getting-started.module#GettingStartedModule',
+    data: { title: 'Getting Started' }
+  },
+  {
     path: 'oss-rules',
     loadChildren: './components/+oss-rules/oss-rules.module#OssRulesModule',
     data: { title: 'OSS Rules' }
@@ -18,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'oss-rules',
+    redirectTo: 'getting-started',
     pathMatch: 'full',
   }
 ];

@@ -1,4 +1,4 @@
-##  OSS Syntax
+#  OSS Syntax
 
  
 Rule format is inspired by CSS, but extended to support nesting and chaining and tweaked to deal with identifiers containing `.`s. 

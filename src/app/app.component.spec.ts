@@ -3,9 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { SectionNavComponent } from './layout/aside-nav/aside-nav.component';
+import { AsideNavComponent } from './layout/aside-nav/aside-nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { MatIconModule, MatListModule, MatSidenavModule, MatToolbar } from '@angular/material';
+import { MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
@@ -22,9 +22,9 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
         SidebarComponent,
-        SectionNavComponent,
+        AsideNavComponent,
         FooterComponent,
-        MatToolbar,
+        MatToolbarModule,
       ],
     }).compileComponents();
   }));

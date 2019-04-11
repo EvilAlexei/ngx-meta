@@ -1,9 +1,9 @@
-<section id="wrapper">
+<section id="wrapper" [class.tablet]="tabletQuery.matches && !mobileQuery.matches">
   <app-header (navBtnClick)="sidenav.toggle()"></app-header>
 
   <mat-sidenav-container id="main">
     <mat-sidenav
-      [opened]="!mobileQuery.matches"
+      [opened]="!tabletQuery.matches"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       #sidenav
       class="sidenav">

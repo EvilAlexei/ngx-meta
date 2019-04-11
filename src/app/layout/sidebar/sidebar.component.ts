@@ -20,7 +20,6 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private headingsListService: HeadingsListService,
-    private anchorScrollService: AnchorScrollService
   ) {
     this.router.events.pipe(
         filter((event: RouterEvent) => event instanceof NavigationEnd)
@@ -40,12 +39,5 @@ export class SidebarComponent implements OnInit {
       .subscribe((data: HTMLElement[]) => {
         this.navItems = data;
       });
-  }
-
-  anchorScroll(event: MouseEvent): void {
-    event.preventDefault();
-
-    const anchorTarget = (event.currentTarget as HTMLAnchorElement).hash;
-    this.anchorScrollService.scrollToTarget(anchorTarget);
   }
 }

@@ -6,9 +6,9 @@
     <ul class="sub-nav" *ngIf="activeRoute === item.path">
       <li *ngFor="let item of navItems">
         <a
-          [href]="'#' + item.id"
+          [routerLink]="activeRoute"
+          [fragment]="item.id"
           [class.active]="item.id === activeFragment"
-          (click)="anchorScroll($event)"
         >
           {{ item.textContent }}
         </a>
