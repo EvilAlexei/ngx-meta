@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 import * as marked from 'marked';
 import { HeadingsListService } from '../../services/headings-list.service';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
@@ -14,7 +14,7 @@ declare var Prism: {
   selector: 'app-markdown',
   template: '<ng-content></ng-content>',
 })
-export class MarkdownComponent implements OnInit, AfterViewChecked {
+export class MarkdownComponent implements OnInit, AfterViewInit {
   @Input() mdFile: string;
   activeRoute: string;
   activeFragment: string;
@@ -44,7 +44,7 @@ export class MarkdownComponent implements OnInit, AfterViewChecked {
     this.render();
   }
 
-  ngAfterViewChecked(): void {
+  ngAfterViewInit(): void {
     this.anchorScrollService.scrollToTarget(this.activeFragment);
   }
 
